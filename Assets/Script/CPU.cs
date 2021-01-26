@@ -33,24 +33,24 @@ public class CPU : MonoBehaviour
     {
       basicMap1 = new float[,,]
       {
-          { {100f,7f,7f,100f}, {7f, -20f, -20f, 7f}, {7f, -20f, -20f, 7f}, {100f,7f,7f,100f} },
-          { {7f, -20f, -20f, 7f}, {-20f, 15f, 15f, -20f}, {-20f, 15f, 15f, -20f}, {7f, -20f, -20f, 7f} },
-          { {7f, -20f, -20f, 7f}, {-20f, 15f, 15f, -20f}, {-20f, 15f, 15f, -20f}, {7f, -20f, -20f, 7f} },
-          { {100f,7f,7f,100f}, {7f, -20f, -20f, 7f}, {7f, -20f, -20f, 7f}, {100f,7f,7f,100f} }
+          { {100f,6f,6f,100f}, {6f, -12f, -12f, 6f}, {6f, -12f, -12f, 6f}, {100f,6f,6f,100f} },
+          { {6f, -12f, -12f, 6f}, {-12f, 30f, 30f, -12f}, {-12f, 30f, 30f, -12f}, {6f, -12f, -12f, 6f} },
+          { {6f, -12f, -12f, 6f}, {-12f, 30f, 30f, -12f}, {-12f, 30f, 30f, -12f}, {6f, -12f, -12f, 6f} },
+          { {100f,6f,6f,100f}, {6f, -12f, -12f, 6f}, {6f, -12f, -12f, 6f}, {100f,6f,6f,100f} }
       };
       basicMap2 = new float[,,]
       {
-          { {75f,0f,0f,75f}, {0f, -3f, -3f, 0f}, {0f, -3f, -3f, 0f}, {75f,0f,0f,75f} },
-          { {0f, -3f, -3f, 0f}, {-3f, 5f, 5f, -3f}, {-3f, 5f, 5f, -3f}, {0f, -3f, -3f, 0f} },
-          { {0f, -3f, -3f, 0f}, {-3f, 5f, 5f, -3f}, {-3f, 5f, 5f, -3f}, {0f, -3f, -3f, 0f} },
-          { {75f,0f,0f,75f}, {0f, -3f, -3f, 0f}, {0f, -3f, -3f, 0f}, {75f,0f,0f,75f} }
+          { {99f,-44f,-44f,99f}, {-44f, -36f, -36f, -44f}, {-44f, -36f, -36f, -44f}, {99f,-44f,-44f,99f} },
+          { {-44f, -36f, -36f, -44f}, {-36f, 2f, 2f, -36f}, {-36f, 2f, 2f, -36f}, {-44f, -36f, -36f, -44f} },
+          { {-44f, -36f, -36f, -44f}, {-36f, 2f, 2f, -36f}, {-36f, 2f, 2f, -36f}, {-44f, -36f, -36f, -44f} },
+          { {99f,-44f,-44f,99f}, {-44f, -36f, -36f, -44f}, {-44f, -36f, -36f, -44f}, {99f,-44f,-44f,99f} }
       };
       basicMap3 = new float[,,]
       {
-          { {60f,7f,7f,60f}, {7f, 15f, 15f, 7f}, {7f, 15f, 15f, 7f}, {60f,7f,7f,60f} },
-          { {7f, 15f, 15f, 7f}, {15f, -10f, -10f, 15f}, {15f, -10f, -10f, 15f}, {7f, 15f, 15f, 7f} },
-          { {7f, 15f, 15f, 7f}, {15f, -10f, -10f, 15f}, {15f, -10f, -10f, 15f}, {7f, 15f, 15f, 7f} },
-          { {60f,7f,7f,60f}, {7f, 15f, 15f, 7f}, {7f, 15f, 15f, 7f}, {60f,7f,7f,60f} }
+          { {95f,3f,3f,95f}, {3f, -49f, -49f, 3f}, {3f, -49f, -49f, 3f}, {95f,3f,3f,95f} },
+          { {3f, -49f, -49f, 3f}, {-49f, -30f, -30f, -49f}, {-49f, -30f, -30f, -49f}, {3f, -49f, -49f, 3f} },
+          { {3f, -49f, -49f, 3f}, {-49f, -30f, -30f, -49f}, {-49f, -30f, -30f, -49f}, {3f, -49f, -49f, 3f} },
+          { {95f,3f,3f,95f}, {3f, -49f, -49f, 3f}, {3f, -49f, -49f, 3f}, {95f,3f,3f,95f} }
       };
       sideMap = new float[,,,]
       {
@@ -462,11 +462,7 @@ public class CPU : MonoBehaviour
 
     public void TextLog()
     {
-      if(texts.deleteText("/Resources/TextFile1.txt")){}else{Debug.Log("Error;");}
-      if(texts.deleteText("/Resources/TextFile2.txt")){}else{Debug.Log("Error;");}
-      if(texts.deleteText("/Resources/TextFile3.txt")){}else{Debug.Log("Error;");}
-      if(texts.deleteText("/Resources/TextFile4.txt")){}else{Debug.Log("Error;");}
-      if(texts.deleteText("/Resources/TextFile5.txt")){}else{Debug.Log("Error;");}
+      if(texts.deleteText("/Resources/TextFile.txt")){}else{Debug.Log("Error;");}
       for(int y=0; y<yLength; y++)
       {
         for(int z=0; z<zLength; z++)
@@ -474,11 +470,29 @@ public class CPU : MonoBehaviour
           for(int x=0; x<xLength; x++)
           {
             basicMap1[x,y,z] = basicMap1Random[x,y,z];
-            if(texts.saveText("/Resources/TextFile1.txt", basicMap1[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
+            if(texts.saveText("/Resources/TextFile.txt", basicMap1[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
+          }
+        }
+      }
+      for(int y=0; y<yLength; y++)
+      {
+        for(int z=0; z<zLength; z++)
+        {
+          for(int x=0; x<xLength; x++)
+          {
             basicMap2[x,y,z] = basicMap2Random[x,y,z];
-            if(texts.saveText("/Resources/TextFile2.txt", basicMap2[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
+            if(texts.saveText("/Resources/TextFile.txt", basicMap2[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
+          }
+        }
+      }
+      for(int y=0; y<yLength; y++)
+      {
+        for(int z=0; z<zLength; z++)
+        {
+          for(int x=0; x<xLength; x++)
+          {
             basicMap3[x,y,z] = basicMap3Random[x,y,z];
-            if(texts.saveText("/Resources/TextFile3.txt", basicMap3[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
+            if(texts.saveText("/Resources/TextFile.txt", basicMap3[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
           }
         }
       }
@@ -491,16 +505,28 @@ public class CPU : MonoBehaviour
             for(int a4=0; a4<3; a4++)
             {
               sideMap[a1,a2,a3,a4] = sideMapRandom[a1,a2,a3,a4];
-              if(texts.saveText("/Resources/TextFile4.txt", sideMap[a1,a2,a3,a4].ToString() + ",")){}else{Debug.Log("Error;");}
+              if(texts.saveText("/Resources/TextFile.txt", sideMap[a1,a2,a3,a4].ToString() + ",")){}else{Debug.Log("Error;");}
+            }
+          }
+        }
+      }
+      for(int a1=0; a1<3; a1++)
+      {
+        for(int a2=0; a2<3; a2++)
+        {
+          for(int a3=0; a3<3; a3++)
+          {
+            for(int a4=0; a4<3; a4++)
+            {
               surfaceMap[a1,a2,a3,a4] = surfaceMapRandom[a1,a2,a3,a4];
-              if(texts.saveText("/Resources/TextFile5.txt", surfaceMap[a1,a2,a3,a4].ToString() + ",")){}else{Debug.Log("Error;");}
+              if(texts.saveText("/Resources/TextFile.txt", surfaceMap[a1,a2,a3,a4].ToString() + ",")){}else{Debug.Log("Error;");}
             }
           }
         }
       }
     }
 
-    public void TextDetalog()
+    public void TextDetalog(int n)
     {
         for(int y=0; y<yLength; y++)
         {
@@ -509,12 +535,10 @@ public class CPU : MonoBehaviour
             for(int x=0; x<xLength; x++)
             {
               basicMap1[x,y,z] = basicMap1Random[x,y,z];
-              if(texts.saveText("/Resources/TextFile1Deta.txt", basicMap1[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
+              if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", basicMap1[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
             }
           }
         }
-        if(texts.saveText("/Resources/TextFile1Deta.txt", "\n")){}else{Debug.Log("Error;");}
-
         for(int y=0; y<yLength; y++)
         {
           for(int z=0; z<zLength; z++)
@@ -522,12 +546,10 @@ public class CPU : MonoBehaviour
             for(int x=0; x<xLength; x++)
             {
               basicMap2[x,y,z] = basicMap2Random[x,y,z];
-              if(texts.saveText("/Resources/TextFile2Deta.txt", basicMap2[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
+              if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", basicMap2[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
             }
           }
         }
-        if(texts.saveText("/Resources/TextFile2Deta.txt", "\n")){}else{Debug.Log("Error;");}
-
         for(int y=0; y<yLength; y++)
         {
           for(int z=0; z<zLength; z++)
@@ -535,12 +557,10 @@ public class CPU : MonoBehaviour
             for(int x=0; x<xLength; x++)
             {
               basicMap3[x,y,z] = basicMap3Random[x,y,z];
-              if(texts.saveText("/Resources/TextFile3Deta.txt", basicMap3[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
+              if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", basicMap3[x,y,z].ToString() + ",")){}else{Debug.Log("Error;");}
             }
           }
         }
-        if(texts.saveText("/Resources/TextFile3Deta.txt", "\n")){}else{Debug.Log("Error;");}
-
         for(int a1=0; a1<3; a1++)
         {
           for(int a2=0; a2<3; a2++)
@@ -549,13 +569,11 @@ public class CPU : MonoBehaviour
             {
               for(int a4=0; a4<3; a4++)
               {
-                if(texts.saveText("/Resources/TextFile4Deta.txt", sideMap[a1,a2,a3,a4].ToString() + ",")){}else{Debug.Log("Error;");}
+                if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", sideMap[a1,a2,a3,a4].ToString() + ",")){}else{Debug.Log("Error;");}
               }
             }
           }
         }
-        if(texts.saveText("/Resources/TextFile4Deta.txt", "\n")){}else{Debug.Log("Error;");}
-
         for(int a1=0; a1<3; a1++)
         {
           for(int a2=0; a2<3; a2++)
@@ -564,12 +582,73 @@ public class CPU : MonoBehaviour
             {
               for(int a4=0; a4<3; a4++)
               {
-                if(texts.saveText("/Resources/TextFile5Deta.txt", surfaceMap[a1,a2,a3,a4].ToString() + ",")){}else{Debug.Log("Error;");}
+                if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", surfaceMap[a1,a2,a3,a4].ToString() + ",")){}else{Debug.Log("Error;");}
               }
             }
           }
         }
-        if(texts.saveText("/Resources/TextFile5Deta.txt", "\n")){}else{Debug.Log("Error;");};
+        if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", "\n")){}else{Debug.Log("Error;");};
+    }
+
+    public void Mokuji(int n)
+    {
+      for(int y=0; y<4; y++)
+      {
+        for(int z=0; z<4; z++)
+        {
+          for(int x=0; x<4; x++)
+          {
+            if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", "ba1" + y + z + x + ",")){}else{Debug.Log("Error;");}
+          }
+        }
+      }
+      for(int y=0; y<4; y++)
+      {
+        for(int z=0; z<4; z++)
+        {
+          for(int x=0; x<4; x++)
+          {
+            if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", "ba2" + y + z + x + ",")){}else{Debug.Log("Error;");}
+          }
+        }
+      }
+      for(int y=0; y<4; y++)
+      {
+        for(int z=0; z<4; z++)
+        {
+          for(int x=0; x<4; x++)
+          {
+            if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", "ba3" + y + z + x + ",")){}else{Debug.Log("Error;");}
+          }
+        }
+      }
+      for(int a1=0; a1<3; a1++)
+      {
+        for(int a2=0; a2<3; a2++)
+        {
+          for(int a3=0; a3<3; a3++)
+          {
+            for(int a4=0; a4<3; a4++)
+            {
+              if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", "si0" + a1 + a2 + a3 + a4 + ",")){}else{Debug.Log("Error;");}
+            }
+          }
+        }
+      }
+      for(int a1=0; a1<3; a1++)
+      {
+        for(int a2=0; a2<3; a2++)
+        {
+          for(int a3=0; a3<3; a3++)
+          {
+            for(int a4=0; a4<3; a4++)
+            {
+              if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", "su0" + a1 + a2 + a3 + a4 + ",")){}else{Debug.Log("Error;");}
+            }
+          }
+        }
+      }
+      if(texts.saveText("/Resources/TextFileDeta" + n + ".txt", "\n")){}else{Debug.Log("Error;");}
     }
 
     public void LearningFinish()

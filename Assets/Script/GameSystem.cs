@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSystem : MonoBehaviour
+public class GameSystem : MonoBehaviour //Training実行前にGameSystem.csのvoidAwakeのMokuji()とGameClearのsuccessTimeやLearningTimeをいじり、CPU.csのRandomMap()を調整する。そしてTextFileData?のテキストを消去する
 {
     [SerializeField] private int xLength = 4;
     [SerializeField] private int yLength = 4;
@@ -27,6 +27,10 @@ public class GameSystem : MonoBehaviour
 
     void Awake()
     {
+        cpu.Mokuji(1);
+        cpu.Mokuji(2);
+        cpu.Mokuji(3);
+
         cpu.XLength = xLength;
         cpu.YLength = yLength;
         cpu.ZLength = zLength;
@@ -205,7 +209,6 @@ public class GameSystem : MonoBehaviour
         if(bl > wh) {result = 1;}
         if(bl == wh) {result = 0;}
         if(bl < wh) {result = -1; cpu.TextLog();}
-        Debug.Log("勝者 : " + result + "   回数 : " + learnTime + "　連続成功回数 : " + successTime); //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       }
 
       void GameClear()
@@ -227,7 +230,10 @@ public class GameSystem : MonoBehaviour
         totalTurn = 0;
         learnTime++;
         if(result == -1){ successTime = 0; }else{ successTime++; }
-        if(successTime == 25){ cpu.TextDetalog(); successTime = 0; }
+        if(successTime % 1 == 0 & successTime != 0){ cpu.TextDetalog(1); }
+        if(successTime % 35 == 0 & successTime != 0){ cpu.TextDetalog(2); }
+        if(successTime % 50 == 0 & successTime != 0){ cpu.TextDetalog(3); }
+        //Debug.Log("勝者 : " + result + "   回数 : " + learnTime + "　連続成功回数 : " + successTime); //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         cpu.MapCopy();
         cpu.RandomMap();
