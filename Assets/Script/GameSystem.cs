@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameSystem : MonoBehaviour //Training実行前にGameSystem.csのvoidAwakeのMokuji()とGameClearのsuccessTimeやLearningTimeをいじり、CPU.csのRandomMap()を調整する。そしてTextFileData?のテキストを消去する
 {
-    [SerializeField] private int xLength = 4;
-    [SerializeField] private int yLength = 4;
-    [SerializeField] private int zLength = 4;
+    private int xLength = 4;
+    private int yLength = 6;
+    private int zLength = 4;
     private int[,,] square; //最新の盤面が記録されている。noStone : 0, blackStone : 1, whiteStone : -1
     [SerializeField] private bool diagonal = false; //{1,1,1}系のベクトルを採用するか。採用するならtrue/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private int[,] vector;
@@ -27,10 +27,6 @@ public class GameSystem : MonoBehaviour //Training実行前にGameSystem.csのvo
 
     void Awake()
     {
-        cpu.Mokuji(1);
-        cpu.Mokuji(2);
-        cpu.Mokuji(3);
-
         cpu.XLength = xLength;
         cpu.YLength = yLength;
         cpu.ZLength = zLength;
@@ -56,6 +52,10 @@ public class GameSystem : MonoBehaviour //Training実行前にGameSystem.csのvo
         square[a,b,c] = -1;
 
         turn = 1;
+
+        cpu.Mokuji(1);
+        cpu.Mokuji(2);
+        cpu.Mokuji(3);
 
         /*for(int _y=0; _y<yLength; _y++) /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         {
@@ -230,10 +230,10 @@ public class GameSystem : MonoBehaviour //Training実行前にGameSystem.csのvo
         totalTurn = 0;
         learnTime++;
         if(result == -1){ successTime = 0; }else{ successTime++; }
-        if(successTime % 1 == 0 & successTime != 0){ cpu.TextDetalog(1); }
+        if(successTime % 20 == 0 & successTime != 0){ cpu.TextDetalog(1); }
         if(successTime % 35 == 0 & successTime != 0){ cpu.TextDetalog(2); }
         if(successTime % 50 == 0 & successTime != 0){ cpu.TextDetalog(3); }
-        //Debug.Log("勝者 : " + result + "   回数 : " + learnTime + "　連続成功回数 : " + successTime); //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        Debug.Log("勝者 : " + result + "   回数 : " + learnTime + "　連続成功回数 : " + successTime); //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         cpu.MapCopy();
         cpu.RandomMap();
@@ -250,6 +250,9 @@ public class GameSystem : MonoBehaviour //Training実行前にGameSystem.csのvo
       public int Turn{ get{ return turn; } set{turn = value; } }
       public int TotalTurn{ get{ return totalTurn; } set{totalTurn = value; } }
       public int LearnTime{ get{ return learnTime; } set{learnTime = value; } }
+      public int XLength{ get{ return xLength; } set{xLength = value; } }
+      public int YLength{ get{ return yLength; } set{yLength = value; } }
+      public int ZLength{ get{ return zLength; } set{zLength = value; } }
 
 
 
