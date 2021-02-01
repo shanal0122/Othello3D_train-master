@@ -230,9 +230,9 @@ public class GameSystem : MonoBehaviour //Training実行前にGameSystem.csのvo
         totalTurn = 0;
         learnTime++;
         if(result == -1){ successTime = 0; }else{ successTime++; }
-        if(successTime % 20 == 0 & successTime != 0){ cpu.TextDetalog(1); }
-        if(successTime % 35 == 0 & successTime != 0){ cpu.TextDetalog(2); }
-        if(successTime % 50 == 0 & successTime != 0){ cpu.TextDetalog(3); }
+        if(successTime % 5 == 0 & successTime != 0){ cpu.TextDetalog(1); }
+        if(successTime % 10 == 0 & successTime != 0){ cpu.TextDetalog(2); }
+        if(successTime % 15 == 0 & successTime != 0){ cpu.TextDetalog(3); }
         Debug.Log("勝者 : " + result + "   回数 : " + learnTime + "　連続成功回数 : " + successTime); //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         cpu.MapCopy();
